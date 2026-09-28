@@ -1,227 +1,1031 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Re:Glow — 小さな光と、ちいさな仕掛けガジェット。3Dプリンタと電子工作から生まれた、触って楽しい・持ち帰れるガジェットを紹介します。" />
-  <meta property="og:title" content="Re:Glow — Tiny Lights & Little Gadgets" />
-  <meta property="og:description" content="小さな光と、ちいさな仕掛けガジェット。" />
-  <meta property="og:type" content="website" />
-  <title>Re:Glow — Tiny Lights & Little Gadgets</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0d12;
-      --bg-soft: #11151d;
-      --panel: rgba(255,255,255,.06);
-      --line: rgba(255,255,255,.12);
-      --text: #f5f7fa;
-      --muted: #aeb6c4;
-      --accent: #b6ffcf;
-      --cyan: #77dcff;
-      --warm: #e6ff7a;
-      --white: #fff;
-      --shadow: 0 24px 60px rgba(0,0,0,.28);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: "Noto Sans JP", system-ui, sans-serif;
-      background:
-        radial-gradient(circle at 12% 12%, rgba(119,220,255,.10), transparent 32%),
-        radial-gradient(circle at 88% 18%, rgba(182,255,207,.10), transparent 28%),
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="description" content="Re:Glow — 光・センサー・インタラクションを軸に、テクノロジーとアートを融合した体験型作品を制作するクリエイティブチーム。">
+
+<meta property="og:title" content="Re:Glow — Light × Sensor × Interaction">
+<meta property="og:description" content="光とテクノロジーで、人と空間の関係をつくる。">
+<meta property="og:type" content="website">
+
+<title>Re:Glow — Light × Sensor × Interaction</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #090b10;
+    --soft: #10141c;
+    --panel: rgba(255,255,255,.055);
+    --line: rgba(255,255,255,.12);
+    --text: #f5f7fa;
+    --muted: #aab3c2;
+    --accent: #b6ffcf;
+    --cyan: #77dcff;
+    --warm: #ffb56b;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Sans JP", system-ui, sans-serif;
+    background:
+        radial-gradient(circle at 15% 8%, rgba(119,220,255,.09), transparent 30%),
+        radial-gradient(circle at 88% 15%, rgba(255,128,70,.08), transparent 27%),
         var(--bg);
-      color: var(--text);
-      line-height: 1.75;
+    color: var(--text);
+    line-height: 1.8;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.wrap {
+    width: min(1120px, calc(100% - 40px));
+    margin: auto;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(14px);
+    background: rgba(9,11,16,.75);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.nav {
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand {
+    font-weight: 800;
+    letter-spacing: .06em;
+    font-size: 1.15rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+
+/* =========================
+   Hero
+========================= */
+
+.hero {
+    min-height: 78vh;
+    display: grid;
+    align-items: center;
+    padding: 90px 0 72px;
+}
+
+.eyebrow {
+    color: var(--accent);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    font-size: .76rem;
+    font-weight: 700;
+}
+
+.hero h1 {
+    margin: 12px 0 22px;
+    font-size: clamp(3.7rem,10vw,8rem);
+    line-height: .9;
+    letter-spacing: -.055em;
+}
+
+.hero-copy {
+    max-width: 820px;
+    font-size: clamp(1.35rem,3vw,2.2rem);
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.hero-note {
+    max-width: 720px;
+    margin-top: 24px;
+    color: var(--muted);
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 28px;
+}
+
+.chip {
+    border: 1px solid var(--line);
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: .84rem;
+    color: #dbe1e9;
+}
+
+
+/* =========================
+   Sections
+========================= */
+
+section {
+    padding: 88px 0;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 28px;
+    margin-bottom: 34px;
+}
+
+.section-head h2 {
+    margin: 0;
+    font-size: clamp(2rem,4vw,3.3rem);
+    letter-spacing: -.035em;
+}
+
+.section-head p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 560px;
+}
+
+
+/* =========================
+   HINARI
+========================= */
+
+.feature {
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    overflow: hidden;
+    background: var(--soft);
+}
+
+.feature-image {
+    aspect-ratio: 16 / 8;
+    background: #151923;
+    overflow: hidden;
+}
+
+.feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.feature-body {
+    padding: 38px 40px 42px;
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 45px;
+}
+
+.status {
+    color: var(--warm);
+    font-weight: 700;
+    letter-spacing: .12em;
+    font-size: .78rem;
+}
+
+.feature h3 {
+    font-size: clamp(2.2rem,5vw,4rem);
+    margin: 5px 0 8px;
+    line-height: 1;
+}
+
+.feature .en {
+    color: var(--muted);
+}
+
+.feature-copy {
+    color: #dce1e8;
+}
+
+.feature-copy strong {
+    color: white;
+}
+
+
+/* =========================
+   Previous Work
+========================= */
+
+.origin {
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    overflow: hidden;
+    background: var(--soft);
+}
+
+.origin img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.origin-copy {
+    padding: 38px;
+}
+
+.origin-copy h3 {
+    font-size: 2rem;
+    margin: 8px 0 16px;
+}
+
+.origin-copy p {
+    color: var(--muted);
+}
+
+.origin-copy .bridge {
+    color: #eef1f5;
+    font-weight: 600;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+    margin-top: 22px;
+}
+
+
+/* =========================
+   About
+========================= */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    padding: 42px;
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 10% 0, rgba(119,220,255,.07), transparent 45%),
+        var(--soft);
+}
+
+.about h2 {
+    font-size: clamp(2rem,4vw,3.2rem);
+    margin: 6px 0 12px;
+}
+
+.about p {
+    color: var(--muted);
+}
+
+.principles {
+    display: grid;
+    gap: 12px;
+    align-content: center;
+}
+
+.principle {
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--panel);
+}
+
+.principle b {
+    display: block;
+}
+
+.principle span {
+    color: var(--muted);
+    font-size: .91rem;
+}
+
+
+/* =========================
+   Activities
+========================= */
+
+.exhibitions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.exhibit {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 9px 14px;
+    color: #dce2ea;
+    font-size: .9rem;
+}
+
+
+/* =========================
+   Products
+========================= */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.card {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: var(--panel);
+}
+
+.visual {
+    aspect-ratio: 1 / 1;
+    background: white;
+}
+
+.visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.card-body {
+    padding: 22px;
+}
+
+.price {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.card h3 {
+    font-size: 1.3rem;
+    margin: 4px 0 8px;
+}
+
+.card p {
+    color: var(--muted);
+    font-size: .92rem;
+    margin: 0;
+}
+
+.products-note {
+    color: var(--muted);
+    max-width: 600px;
+}
+
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 28px 0 38px;
+    color: var(--muted);
+    font-size: .84rem;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media(max-width:860px) {
+
+    .feature-body,
+    .origin,
+    .about {
+        grid-template-columns: 1fr;
     }
-    a { color: inherit; text-decoration: none; }
-    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
-    header {
-      position: sticky; top: 0; z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(11,13,18,.72);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+
+    .origin img {
+        min-height: 0;
+        aspect-ratio: 16 / 10;
     }
-    .nav { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { font-weight: 800; letter-spacing: .05em; font-size: 1.15rem; }
-    .nav-links { display: flex; gap: 24px; color: var(--muted); font-size: .92rem; }
-    .nav-links a:hover { color: var(--white); }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .section-head {
+        display: block;
+    }
+
+    .section-head p {
+        margin-top: 10px;
+    }
+}
+
+@media(max-width:620px) {
+
+    .wrap {
+        width: min(100% - 28px,1120px);
+    }
+
+    .nav-links {
+        display: none;
+    }
+
     .hero {
-      min-height: 72vh;
-      display: grid;
-      align-items: center;
-      padding: 86px 0 70px;
+        min-height: auto;
+        padding: 72px 0 55px;
     }
-    .eyebrow { color: var(--accent); letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; font-weight: 700; }
-    h1 { margin: 14px 0 18px; font-size: clamp(3rem, 9vw, 7.5rem); line-height: .92; letter-spacing: -.05em; }
-    .hero-copy { max-width: 720px; font-size: clamp(1.15rem, 2.6vw, 1.72rem); font-weight: 600; }
-    .hero-en { margin-top: 12px; color: var(--muted); font-size: 1rem; letter-spacing: .05em; }
-    .hero-note { margin-top: 34px; max-width: 720px; color: var(--muted); }
-    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-    .chip { border: 1px solid var(--line); background: rgba(255,255,255,.035); padding: 8px 13px; border-radius: 999px; font-size: .88rem; color: #dbe1e9; }
-    section { padding: 84px 0; }
-    .section-head { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 34px; }
-    .section-head h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.03em; }
-    .section-head p { margin: 0; color: var(--muted); max-width: 530px; }
-    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-    .card {
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.035));
-      box-shadow: var(--shadow);
+
+    section {
+        padding: 62px 0;
     }
-    .visual { aspect-ratio: 1 / 1; background: #fff; display: grid; place-items: center; overflow: hidden; }
-    .visual img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .card-body { padding: 24px; }
-    .price { color: var(--accent); font-weight: 800; font-size: .96rem; }
-    .card h3 { font-size: 1.45rem; margin: 5px 0 10px; }
-    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
-    .tagline { margin-top: 17px; padding-top: 16px; border-top: 1px solid var(--line); color: #e7ebf0 !important; font-weight: 600; }
-    .concept {
-      display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px;
-      border: 1px solid var(--line); border-radius: 28px; padding: 40px;
-      background: radial-gradient(circle at 20% 0%, rgba(119,220,255,.08), transparent 45%), var(--bg-soft);
+
+    .feature-body,
+    .origin-copy,
+    .about {
+        padding: 26px;
     }
-    .concept h2 { margin: 0 0 15px; font-size: clamp(2rem, 4vw, 3.1rem); }
-    .concept p { color: var(--muted); }
-    .principles { display: grid; gap: 12px; align-content: center; }
-    .principle { border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; background: rgba(255,255,255,.035); }
-    .principle b { display: block; margin-bottom: 3px; color: #fff; }
-    .principle span { color: var(--muted); font-size: .92rem; }
-    .event {
-      text-align: center;
-      padding: 86px 24px;
-      border-top: 1px solid var(--line);
-    }
-    .event h2 { margin: 0 0 12px; font-size: clamp(2rem, 4vw, 3rem); }
-    .event p { color: var(--muted); margin: 0 auto; max-width: 720px; }
-    footer { border-top: 1px solid rgba(255,255,255,.08); padding: 28px 0 38px; color: var(--muted); font-size: .86rem; }
-    .footer-row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    @media (max-width: 860px) {
-      .products { grid-template-columns: 1fr; }
-      .concept { grid-template-columns: 1fr; padding: 28px; }
-      .section-head { display: block; }
-      .section-head p { margin-top: 12px; }
-    }
-    @media (max-width: 620px) {
-      .wrap { width: min(100% - 28px, 1120px); }
-      .nav-links { display: none; }
-      .hero { min-height: auto; padding: 70px 0 54px; }
-      section { padding: 62px 0; }
-      .card-body { padding: 20px; }
-    }
-  </style>
+}
+</style>
 </head>
+
+
 <body>
-  <header>
+
+<header>
     <div class="wrap nav">
-      <a class="brand" href="#top">Re:Glow</a>
-      <nav class="nav-links" aria-label="メインナビゲーション">
-        <a href="#products">Products</a>
-        <a href="#concept">Concept</a>
-        <a href="#event">Event</a>
-      </nav>
+
+        <a class="brand" href="#top">
+            Re:Glow
+        </a>
+
+        <nav class="nav-links">
+            <a href="#works">Works</a>
+            <a href="#about">About</a>
+            <a href="#activities">Activities</a>
+            <a href="#products">Products</a>
+        </nav>
+
     </div>
-  </header>
+</header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap">
-        <div class="eyebrow">Tiny Lights & Little Gadgets</div>
+
+<main id="top">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="wrap">
+
+        <div class="eyebrow">
+            Light × Sensor × Interaction
+        </div>
+
         <h1>Re:Glow</h1>
-        <div class="hero-copy">小さな光と、ちいさな仕掛けガジェット。</div>
-        <div class="hero-en">Tiny lights. Little mechanisms. Small things that make you want to touch, turn, and gather.</div>
-        <p class="hero-note">3Dプリンタと電子工作を組み合わせ、手のひらサイズの「触って楽しい、持ち帰れる」作品をつくっています。</p>
-        <div class="chips">
-          <span class="chip">3D Printing</span>
-          <span class="chip">Electronics</span>
-          <span class="chip">Light</span>
-          <span class="chip">Mechanical</span>
-          <span class="chip">Interactive</span>
-        </div>
-      </div>
-    </section>
 
-    <section id="products">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <div class="eyebrow">Products</div>
-            <h2>3つの小さな作品</h2>
-          </div>
-          <p>回す、光る、つながる。価格帯ごとに違う体験を楽しめる、Re:Glowのガジェットシリーズです。</p>
+        <div class="hero-copy">
+            光とテクノロジーで、<br>
+            人と空間の関係をつくる。
         </div>
+
+        <p class="hero-note">
+            Re:Glowは、光・センサー・インタラクションを軸に、
+            テクノロジーとアートを融合した体験型作品を制作する
+            クリエイティブチームです。
+            見るだけではなく、人が関わることで変化し、
+            その場に新しい体験や関係が生まれる作品をつくっています。
+        </p>
+
+        <div class="chips">
+            <span class="chip">Light</span>
+            <span class="chip">Sensor</span>
+            <span class="chip">Interaction</span>
+            <span class="chip">Projection</span>
+            <span class="chip">Electronics</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     HINARI
+========================= -->
+
+<section id="works">
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <div>
+                <div class="eyebrow">
+                    Featured Work
+                </div>
+
+                <h2>
+                    火を、ひとつの生命へ。
+                </h2>
+            </div>
+
+            <p>
+                これまでの光の表現を、
+                空間・環境・人との関係へ拡張する
+                次のプロトタイプ。
+            </p>
+
+        </div>
+
+
+        <article class="feature">
+
+            <div class="feature-image">
+
+                <img
+                    src="assets/hinari.jpg"
+                    alt="火生 HINARI 展示イメージ"
+                >
+
+            </div>
+
+
+            <div class="feature-body">
+
+                <div>
+
+                    <div class="status">
+                        WORK IN PROGRESS
+                    </div>
+
+                    <h3>
+                        火生
+                    </h3>
+
+                    <div class="en">
+                        HINARI — A Living Fire
+                    </div>
+
+                </div>
+
+
+                <div class="feature-copy">
+
+                    <p>
+                        <strong>
+                            「火」をひとつの生命として再構築する、
+                            五感型インタラクティブ・インスタレーション。
+                        </strong>
+                    </p>
+
+                    <p>
+                        本物の炎を使わず、
+                        立体造形、光、映像、音、熱、風を組み合わせ、
+                        揺らぎ、呼吸し、環境に反応する
+                        「生きた火」を表現します。
+                        風が吹けば揺らぎ、雨が降れば弱り、
+                        人が近づき手をかざすと応える。
+                        時には消えそうになる火を、
+                        その場に集まった人々がともに守り、育てます。
+                    </p>
+
+                    <p>
+                        生活の中から裸火が姿を消しつつある現代に、
+                        人はなぜ火に惹かれ、火を囲むのか。
+                        太古から続く人と火の関係を、
+                        現代のテクノロジーによって問い直します。
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FANTASY BONFIRE
+========================= -->
+
+<section>
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="eyebrow">
+                    Origin / Previous Work
+                </div>
+
+                <h2>
+                    幻想焚火ラウンジ
+                </h2>
+
+            </div>
+
+            <p>
+                HINARIへつながる、
+                光による焚火のプロトタイプ。
+            </p>
+
+        </div>
+
+
+        <article class="origin">
+
+            <img
+                src="assets/bonfire.jpg"
+                alt="幻想焚火ラウンジ"
+            >
+
+
+            <div class="origin-copy">
+
+                <div class="eyebrow">
+                    LOCAL NIGHT PICNIC
+                </div>
+
+                <h3>
+                    Fantasy Bonfire Lounge
+                </h3>
+
+                <p>
+                    本物の炎ではなく、
+                    光によって「焚火を囲む場」をつくった
+                    インスタレーション。
+                    多数のLEDを組み込んだ発光体を焚火に見立て、
+                    人々が光を囲み、
+                    同じ時間を共有する空間を制作しました。
+                </p>
+
+                <p class="bridge">
+                    この作品から生まれた
+                    「火がなくても、人は光を囲むのか」
+                    という問いが、
+                    火そのものを生命として再構築する
+                    次作「HINARI」へとつながっています。
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+    <div class="wrap">
+
+        <div class="about">
+
+            <div>
+
+                <div class="eyebrow">
+                    About Re:Glow
+                </div>
+
+                <h2>
+                    人が関わることで、<br>
+                    作品が生きはじめる。
+                </h2>
+
+                <p>
+                    LED、プロジェクション、センシング、
+                    電子工作などを用い、
+                    鑑賞するだけではなく、
+                    人の動きや周囲の環境によって
+                    表情を変える作品づくりに取り組んでいます。
+                </p>
+
+                <p>
+                    テクノロジーを単なる仕掛けとして
+                    見せるのではなく、
+                    人の感覚や行動を引き出し、
+                    その場にいる人同士の関係まで
+                    変化させるような体験を目指しています。
+                </p>
+
+            </div>
+
+
+            <div class="principles">
+
+                <div class="principle">
+
+                    <b>Light</b>
+
+                    <span>
+                        光を、空間や感情を変える素材として扱う。
+                    </span>
+
+                </div>
+
+
+                <div class="principle">
+
+                    <b>Interaction</b>
+
+                    <span>
+                        人の行動が作品の一部になる体験をつくる。
+                    </span>
+
+                </div>
+
+
+                <div class="principle">
+
+                    <b>Prototype</b>
+
+                    <span>
+                        つくり、試し、
+                        体験から次の表現へ発展させる。
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ACTIVITIES
+========================= -->
+
+<section id="activities">
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="eyebrow">
+                    Exhibitions / Activities
+                </div>
+
+                <h2>
+                    つくって、見せて、またつくる。
+                </h2>
+
+            </div>
+
+            <p>
+                各地のイベントで作品を展示し、
+                来場者との体験を
+                次の制作へフィードバックしています。
+            </p>
+
+        </div>
+
+
+        <div class="exhibitions">
+
+            <span class="exhibit">
+                LOCAL NIGHT PICNIC
+            </span>
+
+            <span class="exhibit">
+                Maker Faire Tokyo
+            </span>
+
+            <span class="exhibit">
+                Ogaki Mini Maker Faire
+            </span>
+
+            <span class="exhibit">
+                メイカーズながおかまつり
+            </span>
+
+            <span class="exhibit">
+                Micro Maker Faire Kariya
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PRODUCTS
+========================= -->
+
+<section id="products">
+
+    <div class="wrap">
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="eyebrow">
+                    Maker Projects / Products
+                </div>
+
+                <h2>
+                    手のひらサイズの実験。
+                </h2>
+
+            </div>
+
+            <p class="products-note">
+                インスタレーションだけでなく、
+                3Dプリンタと電子工作を使った
+                小さな作品も制作しています。
+            </p>
+
+        </div>
+
 
         <div class="products">
-          <article class="card">
-            <div class="visual"><img src="assets/gacha.png" alt="無限ガチャ・キーホルダー"></div>
-            <div class="card-body">
-              <div class="price">¥500</div>
-              <h3>無限ガチャ・キーホルダー</h3>
-              <p>ガチャガチャのハンドルを回したときのような、カチカチとした機械感をいつでも楽しめるメカニカルフィジェット。</p>
-              <p class="tagline">回す。カチカチする。それだけなのに、やめられない。</p>
-            </div>
-          </article>
 
-          <article class="card">
-            <div class="visual"><img src="assets/crystal.png" alt="光るクリスタル"></div>
-            <div class="card-body">
-              <div class="price">¥1,500</div>
-              <h3>光るクリスタル</h3>
-              <p>半透明の3Dプリント造形とLEDを組み合わせた、小さな光のオブジェ。机の上に置いて楽しめます。</p>
-              <p class="tagline">小さな結晶に、光を閉じ込めました。</p>
-            </div>
-          </article>
 
-          <article class="card">
-            <div class="visual"><img src="assets/firefly.png" alt="群れる電子ホタル・キーホルダー"></div>
-            <div class="card-body">
-              <div class="price">¥2,500</div>
-              <h3>群れる電子ホタル</h3>
-              <p>手で覆って暗くすると、やさしく発光する電子ホタル。複数を近づけると、お互いを見つけて光のリズムがつながります。</p>
-              <p class="tagline">1匹でも。仲間と一緒なら、もっと光る。</p>
-            </div>
-          </article>
+            <article class="card">
+
+                <div class="visual">
+
+                    <img
+                        src="assets/gacha.png"
+                        alt="無限ガチャ・キーホルダー"
+                    >
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="price">
+                        ¥500
+                    </div>
+
+                    <h3>
+                        無限ガチャ・キーホルダー
+                    </h3>
+
+                    <p>
+                        カチカチとした機械感を
+                        いつでも楽しめる
+                        メカニカルフィジェット。
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="card">
+
+                <div class="visual">
+
+                    <img
+                        src="assets/crystal.png"
+                        alt="光るクリスタル"
+                    >
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="price">
+                        ¥1,500
+                    </div>
+
+                    <h3>
+                        光るクリスタル
+                    </h3>
+
+                    <p>
+                        半透明の3Dプリント造形と
+                        LEDを組み合わせた、
+                        小さな光のオブジェ。
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <article class="card">
+
+                <div class="visual">
+
+                    <img
+                        src="assets/firefly.png"
+                        alt="群れる電子ホタル"
+                    >
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="price">
+                        ¥2,500
+                    </div>
+
+                    <h3>
+                        群れる電子ホタル
+                    </h3>
+
+                    <p>
+                        暗くすると発光し、
+                        複数を近づけると
+                        光のリズムがつながる電子ホタル。
+                    </p>
+
+                </div>
+
+            </article>
+
+
         </div>
-      </div>
-    </section>
 
-    <section id="concept">
-      <div class="wrap">
-        <div class="concept">
-          <div>
-            <div class="eyebrow">Concept</div>
-            <h2>見るだけじゃなく、触りたくなるもの。</h2>
-            <p>Re:Glowでは、複雑な説明がなくても「回してみたい」「手で覆ってみたい」「並べてみたい」と思える、小さな体験を大切にしています。</p>
-            <p>作品は3Dプリンタと電子工作を中心に制作。会場で楽しんだ体験を、そのまま持ち帰れるガジェットを目指しています。</p>
-          </div>
-          <div class="principles">
-            <div class="principle"><b>Touch</b><span>手に取った瞬間に、何かしてみたくなる。</span></div>
-            <div class="principle"><b>Glow</b><span>小さな光が、身近なものを少し特別にする。</span></div>
-            <div class="principle"><b>Connect</b><span>人やモノが近づくことで、新しい振る舞いが生まれる。</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="event" class="event">
-      <div class="wrap">
-        <div class="eyebrow">See You at the Event</div>
-        <h2>Re:Glowを、実際に触ってみてください。</h2>
-        <p>作品はイベント会場で展示・販売予定です。開催情報や制作の進捗は、このページで随時更新していきます。</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap footer-row">
-      <span>© 2026 Re:Glow</span>
-      <span>Tiny Lights & Little Gadgets</span>
     </div>
-  </footer>
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+    <div class="wrap footer-row">
+
+        <span>
+            © 2026 Re:Glow
+        </span>
+
+        <span>
+            Light × Sensor × Interaction
+        </span>
+
+    </div>
+
+</footer>
+
+
 </body>
 </html>
